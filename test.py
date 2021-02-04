@@ -29,7 +29,7 @@ klines = klines[:, :6]
 
 data = pd.DataFrame(data=klines, columns=[
                     "Time", "Open", "High", "Low", "Close", "Volume"])
-data["Time"] = data["Time"].astype('int')/1000
+data["Time"] = data["Time"].astype('float')/1000.0
 data["Open"] = data["Open"].astype('float')
 data["High"] = data["High"].astype('float')
 data["Low"] = data["Low"].astype('float')
