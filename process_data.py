@@ -32,18 +32,15 @@ tmp = np.vstack((data[index], data[index+1], data[index+2]))
 base = tmp[base_pos, -2]
 tmp[:, :4] -= base
 tmp[:, :4] /= base
-tmp[:, -1] /= tmp[base_pos, -1]
+# tmp[:, -1] /= tmp[base_pos, -1]
 # draw_klines_np(tmp, t0, t3, dl*3)
 
 x = tmp[:base_pos+1]
 y = tmp[base_pos+1:]
-
+y = np.mean(y[:, :4], axis=1)
 # draw_klines_np(x, t0, t2, dl*2)
 # draw_klines_np(y, t0, t1, dl)
-y = np.mean(y[:, :-1], axis=1)
 
-lines = []
-datelist = pd.date_range(t2, t3, dl)
-for v, t in zip(y, datelist):
-    lines.append([str(t), v])
-draw_dataset(tmp, t0, t3, dl*3, lines)
+print(tmp.shape)
+print(y.shape)
+draw_dataset(tmp, y, 96)
